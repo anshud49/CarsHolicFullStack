@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/docs.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Carsholic API Documentation</h1>
+            <p>Base URL: <a href="https://carsholic.vercel.app/api/" target="_blank">https://carsholic.vercel.app/</a></p>
+        </header>
+        <main>
+            <section class="api-section">
+                <h2>Create User</h2>
+                <p><strong>Endpoint:</strong> POST /api/register/</p>
+                <p><strong>Description:</strong> Register a new user.</p>
+                <pre><code>
+Request Body:
+{
+    "username": "your_username",
+    "email": "your_email",
+    "password": "your_password"
+}
+Response:
+{
+    "message": "User registered successfully."
+}
+                </code></pre>
+            </section>
+
+            <section class="api-section">
+                <h2>Login User</h2>
+                <p><strong>Endpoint:</strong> POST /api/login/</p>
+                <p><strong>Description:</strong> Authenticate and log in a user.</p>
+                <pre><code>
+Request Body:
+{
+    "username": "your_username",
+    "password": "your_password"
+}
+Response:
+{
+    "access_token": "your_access_token",
+    "refresh_token": "your_refresh_token"
+}
+                </code></pre>
+            </section>
+
+            <section class="api-section">
+                <h2>Create Product (Car Post)</h2>
+                <p><strong>Endpoint:</strong> POST /api/cars/</p>
+                <p><strong>Description:</strong> Create a new car post by using the access token as a bearer token of an authenticated user. You can also specify if the car post is public by sending a `public` parameter in the request body.</p>
+                <pre><code>
+Request Body:
+{
+    "car_name": "Model S",
+    "description": "Electric car by Tesla",
+    "title": "Tesla Model S",
+    "tags": "electric ,luxury",
+    "car_type": "Sedan",
+    "company": "Tesla",
+    "dealer": "Tesla Showroom",
+    "logo": "logo_url",
+    "images": ["image1_url", "image2_url"],
+    "public": true
+}
+Response:
+{
+    "car_name": "Model S",
+    "description": "Electric car by Tesla",
+    "title": "Tesla Model S",
+    "tags": "electric ,luxury",
+    "car_type": "Sedan",
+    "company": "Tesla",
+    "dealer": "Tesla Showroom",
+    "logo": "logo_url",
+    "images": ["image1_url", "image2_url"],
+    "public": true
+}
+                </code></pre>
+            </section>
+
+            <section class="api-section">
+                <h2>List Products (Public or User-specific)</h2>
+                <p><strong>Endpoint:</strong> GET /api/cars/</p>
+                <p><strong>Description:</strong> Retrieve all car posts.</p>
+                <p><strong>Behavior:</strong></p>
+                <ul>
+                    <li>If the user is not authenticated (no Bearer token), only public car posts will be returned.</li>
+                    <li>If the user is authenticated (with a Bearer token), only the car posts created by that user will be returned.</li>
+                </ul>
+            </section>
+
+            <section class="api-section">
+                <h2>List Public Products</h2>
+                <p><strong>Endpoint:</strong> GET /api/cars/?isLoggedin=true</p>
+                <p><strong>Description:</strong> Retrieve all car posts excluding those created by the authenticated user. If the user is not authenticated, this behaves the same as the `/api/cars/` endpoint.</p>
+                <p><strong>Headers:</strong> Bearer token required for authenticated requests.</p>
+            </section>
+
+
+            <section class="api-section">
+                <h2>List Particular Product</h2>
+                <p><strong>Endpoint:</strong> GET /api/cars/&lt;id&gt;/</p>
+                <p><strong>Description:</strong> Retrieve details of a specific car post.</p>
+            </section>
+
+            <section class="api-section">
+                <h2>Update Product</h2>
+                <p><strong>Endpoint:</strong> PUT /api/cars/&lt;id&gt;/</p>
+                <p><strong>Description:</strong> Fully update an existing car post.</p>
+            </section>
+
+            <section class="api-section">
+                <h2>Partially Update Product</h2>
+                <p><strong>Endpoint:</strong> PATCH /api/cars/&lt;id&gt;/</p>
+                <p><strong>Description:</strong> Partially update specific fields of a car post.</p>
+            </section>
+
+            <section class="api-section">
+                <h2>Delete Product</h2>
+                <p><strong>Endpoint:</strong> DELETE /api/cars/&lt;id&gt;/</p>
+                <p><strong>Description:</strong> Delete a specific car post.</p>
+            </section>
+
+            <section class="api-section">
+                <h2>Delete Car Image</h2>
+                <p><strong>Endpoint:</strong> DELETE /api/carimages/&lt;id&gt;/</p>
+                <p><strong>Description:</strong> Delete a specific image associated with a car post.</p>
+            </section>
+  
+        </main>
+    </div>
+</body>
+</html>
