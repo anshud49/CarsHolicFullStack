@@ -1,7 +1,11 @@
 # Django Car Details API
 
-This project is a Django REST API for managing car details, including car models. The project includes a `cardetails` app and a main `api` module to handle endpoints. This README covers the project setup, file structure, available API endpoints, and JWT authentication.
 
+This project is a Django REST API for managing car details, including car models. The project car details management platform with React and Django REST Framework, enabling users
+to securely log in and create, update, partially update, and delete their posts with options to post publicly
+or privately.
+Live - https://cars-holic.vercel.app/
+API Documentation-https://carsholic.vercel.app/api/docs/
 ## Project Structure
 
 The project is organized as follows:
